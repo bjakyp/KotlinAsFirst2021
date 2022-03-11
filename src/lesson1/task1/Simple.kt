@@ -55,6 +55,12 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
 fun main() {
     val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
     println("Root product: $x1x2")
+
+    val result = sqr(42)
+    println("Result: $result")
+
+    val result1 = sqr(42.0)
+    println("Result: $result1")
 }
 
 /**
@@ -74,7 +80,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours*60*60+minutes*6
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = ((sagenes*3+arshins)*48+vershoks)*4.445/100
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = ((sagenes*3+arshins)*16+vershoks)*4.445/100
 
 /**
  * Тривиальная (1 балл)
@@ -82,7 +88,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = ((sagene
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = (deg+(min+sec/60)/60)* PI/180
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double = ((deg+(min+sec/60.0)/60.0)* PI)/180
 
 /**
  * Тривиальная (1 балл)
