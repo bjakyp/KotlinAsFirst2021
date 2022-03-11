@@ -5,6 +5,7 @@ package lesson2.task1
 import lesson1.task1.discriminant
 import kotlin.math.max
 import kotlin.math.sqrt
+import lesson1.task1.*
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
 // Максимальное количество баллов = 6
@@ -68,9 +69,18 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String
-{
-    return "0"
+fun ageDescription(age: Int): String {
+    var tmpstr=""
+    var tmpint=age%10
+    if ((age in 5..20) or (age in 111..120)) tmpstr="$age лет"
+        else
+            when (tmpint)
+                {
+                    1 -> tmpstr="$age год"
+                    2,3,4 -> tmpstr="$age года"
+                        else -> tmpstr="$age лет"
+                }
+return tmpstr
 }
 
 /**
@@ -84,14 +94,20 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double
-{
-    val totalkm=(v1*t1+v2*t2+v3*t3)/2
-    if (totalkm<=(v1*t1))
-        return totalkm/v1
-         else totalkm=
+): Double {
+    var totalkm = (v1 * t1 + v2 * t2 + v3 * t3) / 2
+    var totalh =0.0
+    if (totalkm <= (v1 * t1))
+        totalh = totalkm / v1
+    else {
+        totalh=t1
+        totalkm=totalkm-(v1*t1)
 
-    return totalkm
+        if (totalkm<=(v2*t2))
+            totalh=totalh+totalkm/v2 else
+            totalh=totalh+t2+(totalkm-(v2*t2))/v3
+    }
+return totalh
 }
 
 
@@ -108,8 +124,13 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
-
+): Int
+{
+    var result=0
+    if ((kingX-rookX1==0) or (kingY-rookY1==0)) result=1
+    if ((kingX-rookX2==0) or (kingY-rookY2==0)) result=result+2
+    return result
+}
 /**
  * Простая (2 балла)
  *
@@ -124,7 +145,13 @@ fun rookOrBishopThreatens(
     kingX: Int, kingY: Int,
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
-): Int = TODO()
+): Int
+{
+    var result=0
+    if ((kingX-rookX==0) or (kingY-rookY==0)) result=1
+    if (sqr(kingX-bishopX)==sqr(kingY-rookY)) result=result+2
+    return result
+}
 
 /**
  * Простая (2 балла)
