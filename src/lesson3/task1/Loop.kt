@@ -2,6 +2,9 @@
 
 package lesson3.task1
 
+import java.math.BigInteger
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 // Урок 3: циклы
@@ -72,7 +75,21 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int
+{
+    var result=0
+    var tmp:Long
+    tmp=1
+    do
+    {
+        result++
+        tmp = tmp * 10
+        println(tmp)
+    }
+    while (n/tmp>0)
+
+    return result
+}
 
 /**
  * Простая (2 балла)
@@ -80,21 +97,43 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int
+{
+    var fibn=1
+    var fibn1=1
+    var fibn2=1
+
+    for (i in 3..n) {
+        fibn2 = fibn + fibn1
+        fibn=fibn1
+        fibn1=fibn2
+    }
+    return fibn2
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+
+    for (i in 2..n)
+        if (n%i==0) return i
+
+    return 1
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int
+{
+    for (i in n-1 downTo 1) if (n%i==0) return i
+    return 1
+}
 
 /**
  * Простая (2 балла)
@@ -112,7 +151,17 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int
+{
+    var tmp_x=x
+    var count=0
+    while (tmp_x>1)
+    {
+        count++
+        if (tmp_x%2==0) tmp_x=tmp_x/2 else tmp_x=3*tmp_x+1
+    }
+    return count
+}
 
 /**
  * Средняя (3 балла)
@@ -120,7 +169,13 @@ fun collatzSteps(x: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int
+{
+    if (max(m,n)%min(m,n)==0) return max(m,n)
+    for (i in max(m,n)..Int.MAX_VALUE step max(m,n))
+        if (i%m==0 && i%n==0) return i
+    return 0
+}
 
 /**
  * Средняя (3 балла)
@@ -129,7 +184,18 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean
+{
+
+  var result=true
+    for (i in 2..max(m,n))
+            if ((m%i==0) && (n%i==0))
+            {
+                result = false
+                break
+            }
+    return result
+}
 
 /**
  * Средняя (3 балла)
@@ -138,7 +204,28 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int
+{
+    var countnomber=1
+    var tmp=n
+    var tmpr=0
+    while (tmp/10>0)
+    {
+        tmp=tmp/10
+        countnomber=countnomber*10
+    }
+    tmp=n
+
+    while (countnomber>0)
+    {
+        tmpr=tmpr+(tmp%10)*countnomber
+        tmp=tmp/10
+        countnomber=countnomber/10
+    }
+
+
+    return tmpr
+}
 
 /**
  * Средняя (3 балла)
