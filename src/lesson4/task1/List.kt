@@ -4,6 +4,7 @@ package lesson4.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.sqrt
+import lesson1.task1.*
 
 // Урок 4: списки
 // Максимальное количество баллов = 12
@@ -120,14 +121,30 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double
+{
+    var summ=0.0
+    for (i in 0..v.size-1)
+        summ=summ+sqr(v[i])
+
+    return sqrt(summ)
+
+}
 
 /**
  * Простая (2 балла)
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double
+{
+    if (list.size==0) return 0.0
+    var summ=0.0
+    for (i in 0..list.size-1)
+        summ=summ+list[i]
+
+    return summ/list.size
+}
 
 /**
  * Средняя (3 балла)
