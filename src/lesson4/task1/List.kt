@@ -5,6 +5,8 @@ package lesson4.task1
 import lesson1.task1.discriminant
 import kotlin.math.sqrt
 import lesson1.task1.*
+import java.math.*
+import kotlin.math.pow
 
 // Урок 4: списки
 // Максимальное количество баллов = 12
@@ -154,7 +156,22 @@ fun mean(list: List<Double>): Double
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double>
+{
+    var tmp_avr=0.0
+   // var resultList=list
+if (list.size<1) return list
+
+    for (i in 0..list.size-1)
+        tmp_avr += list[i]
+
+    tmp_avr=tmp_avr/list.size
+
+    for (i in 0..list.size-1)
+        list[i]=list[i]-tmp_avr
+
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -163,7 +180,15 @@ fun center(list: MutableList<Double>): MutableList<Double> = TODO()
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.
  */
-fun times(a: List<Int>, b: List<Int>): Int = TODO()
+fun times(a: List<Int>, b: List<Int>): Int
+{
+    var result=0
+
+   for (i in 0..a.size-1)
+       result=result+a[i]*b[i]
+
+    return result
+}
 
 /**
  * Средняя (3 балла)
@@ -173,7 +198,20 @@ fun times(a: List<Int>, b: List<Int>): Int = TODO()
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0 при любом x.
  */
-fun polynom(p: List<Int>, x: Int): Int = TODO()
+fun polynom(p: List<Int>, x: Int): Int
+{
+    var result=0
+    if (p.size<1) return result
+
+    result=p[0]
+
+    for (i in 1..p.size-1)
+        result+=p[i]*(x.toDouble().pow(i).toInt())
+
+    return result
+}
+
+
 
 /**
  * Средняя (3 балла)
@@ -185,7 +223,12 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int>
+{
+    for (i in 1..list.size-1)
+        list[i]=list[i-1]+list[i]
+    return list
+}
 
 /**
  * Средняя (3 балла)
